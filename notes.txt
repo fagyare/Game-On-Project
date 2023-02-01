@@ -1,0 +1,36 @@
+HANGMAN GAME 
+Step 1: Set up GitHub Reporsitory 
+First init/add/push/commit
+
+Step 2. Psedocode - here 
+
+Step 3. HTML 
+CSS 
+JavaScript 
+
+
+HTML - !Doctype 
+Link Styles.css 
+Add JavaScript
+build conatainers/boxes
+
+HTML - create id(s) and Classes <div></div> 
+ Canvas 
+ Game letters (all alphabets)
+ New Game Container
+ New Game Button 
+ Options container 
+ User Input section 
+ Reseult Text 
+ 
+
+CSS::: - Container styling 
+    Style fonts, background, height, width, position, top, left, bottom 
+
+    
+JavaScript:::
+Set Options values for buttons in an array let options = {[]}
+Veriables 
+Tap into all the HTML IDs using const = document.getElementById 
+African Countries: Ghana, Nigeria, Mozambique, Zimbabwe, Morocco, Eswatini, Somalia, Mali, Seychelles, Eritrea
+Teams: Napoli, Arsenal, Barcelona, Chelsea, Liverpool, Juventus, Freiburg, Madrid, PSG, Atalanta 

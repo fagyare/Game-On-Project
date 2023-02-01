@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "ariel"; 
+    box-sizing: border-box; 
+    display: 
+
+}
+
+body {
+    background-color: rgb(50, 164, 234);
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(18, 60, 138);
+    text-shadow: 0 0 2px whitesmoke;
+}
+
+.container {
+    background-color: rgb(18, 60, 138);
+    /* position: absolute; */
+    margin: 50px auto;
+    font-size: 20px;
+    width: 85vw;
+    height: 100vh;
+    max-width: 50em;
+    padding: 5em;
+    box-shadow: 0 0 5px whitesmoke;
+    border-radius: 10px;
+    /* top: 20%;
+    left: 5%;
+    border-radius: 10px;
+    /* box-shadow: 0 0 5px whitesmoke; */
+
+}
