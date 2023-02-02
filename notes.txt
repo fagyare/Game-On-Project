@@ -1,4 +1,12 @@
 HANGMAN GAME 
+Game Logic: 
+Guess an NBA team or an African country using a single word 
+Get some number of lives to keep guessing/playing 
+Continue to next round if you guess right 
+Reset button: Resets words, lives, and score 
+Show wins & loses 
+Each wrong guess will decrease a player's life and draw a part of a hanging man till the player looses 
+
 Step 1: Set up GitHub Reporsitory 
 First init/add/push/commit
 
@@ -9,19 +17,19 @@ CSS
 JavaScript 
 
 
-HTML - !Doctype 
+HTML::: - !Doctype 
 Link Styles.css 
 Add JavaScript
 build conatainers/boxes
 
 HTML - create id(s) and Classes <div></div> 
- Canvas 
+ Canvas(to draw hangman when player guesses a wrong)
+  Options container 
  Game letters (all alphabets)
  New Game Container
- New Game Button 
- Options container 
- User Input section 
- Reseult Text 
+ New Game Button popout after the game & hides when page reloads
+ User Input section - input letters to guess/play the game 
+ Reseult Text - final result to show wins/loses 
  
 
 CSS::: - Container styling 
@@ -31,6 +39,10 @@ CSS::: - Container styling
 JavaScript:::
 Set Options values for buttons in an array let options = {[]}
 Veriables 
-Tap into all the HTML IDs using const = document.getElementById 
-African Countries: Ghana, Nigeria, Mozambique, Zimbabwe, Morocco, Eswatini, Somalia, Mali, Seychelles, Eritrea
-Teams: Napoli, Arsenal, Barcelona, Chelsea, Liverpool, Juventus, Freiburg, Madrid, PSG, Atalanta 
+Capture/Tap into all the HTML IDs using const = document.getElementById or document.querySelector 
+NBA teams: ['Lakers', 'Knicks', 'Nuggets', 'Pistons', 'Celtics', 'Heat', 'Nets', 'Bucks', 'Pacers', 'Magic'],
+African Countries:['Ghana', 'Nigeria', 'Mozambique', 'Zimbabwe', 'Morocco', 'Eswatini', 'Somalia', 'Mali', 'Seychelles', 'Eritrea'],
+
+1. Create/Display Categories buttons function 
+
+
