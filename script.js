@@ -1,4 +1,3 @@
-// Tap/Selecting the Id for initial reference 
 // Catergories value for category buttons 
 let categories = {
     teams: ['Lakers', 'Knicks', 'Nuggets', 'Pistons', 'Celtics', 'Heat', 'Nets', 'Bucks', 'Pacers', 'Magic'],
@@ -8,7 +7,7 @@ let hints = {
     teams: 'A team in the NBA',
     countries: 'A country in Africa'
 };
-// Set variable counts 
+// Set variables 
 let winCount = 0;
 let chosenWord = "";
 let rightGuesses = [];
@@ -22,6 +21,10 @@ let resultsEl = null;
 let contentLeftTop = null;
 let contentLeftBottom = null;
 let playerInputSection = null;
+let livesContainer = null;
+let hintContainer = null;
+let isNewGame = false;
+let isCategorySelected = false;
 /**
  * 
  * 
@@ -43,7 +46,7 @@ const displayOptions = () => {
     generateAndDisplayAlphabets();
 };
 
-// generate all alphabets
+// generate & display all alphabets using generateAndDisplayAplphabets arrow fucntion 
 const generateAndDisplayAlphabets = () => {
     const letterContainer = document.getElementById('letter-container');
     const alphabets = [
@@ -61,41 +64,41 @@ const generateAndDisplayAlphabets = () => {
 }
 
 const generateWord = (selectCategory) => {
+    isCategorySelected = true;
+    isPlaying = !isCategorySelected;
     rightGuesses = [];
     wrongGuesses = [];
     const words = categories[selectCategory];
     const hint = hints[selectCategory];
-    console.log(hint)
     chosenWord = words[Math.floor(Math.random() * 9)].toLowerCase();
-    rightGuesses = Array(chosenWord.length).fill('_');
-    console.log(rightGuesses);
     playerInputSection = document.getElementById('player-input-section');
+    hintContainer = document.getElementById('word-hint-container');
+
+    resetGame();
+    addSpaces();
+
+    hintContainer.innerHTML = hint;
+}
+
+const addSpaces = () => {
+    rightGuesses = Array(chosenWord.length).fill('_');
     playerInputSection.innerHTML = '';
-    console.log(chosenWord);
-    console.log(rightGuesses, wrongGuesses);
-    document.getElementById('word-hint-container').innerHTML = hint;
     for(let ch of rightGuesses) {
         const letterEl = document.createElement('h4');
-        letterEl.classList.add('_letter');
+        letterEl.classList.add('_letter', 'main-font');
         letterEl.textContent = ch;
         playerInputSection.append(letterEl);
     }
-
 }
-
 
 /**
  * handles when a letter is clicked
  * @params e : click event
  */
 const letterClicked = (e) => {
+    isPlaying = true;
     e.target.classList.add('clicked');
     e.target.setAttribute('disabled', true);
-
-    if (totalGuessesAllowed === 0) {
-        return displayGameResults();
-    }
-
     const letter = e.target.textContent;
     const wordArr = chosenWord.split(''); 
     const exists = wordArr.find(l => l === letter);
@@ -112,8 +115,8 @@ const letterClicked = (e) => {
         wrongGuesses.push(letter);
         totalGuessesAllowed--;
 
+        updateLives();
         // START DRAWING HERE
-
 
     }
 
@@ -122,26 +125,60 @@ const letterClicked = (e) => {
         return displayGameResults();
     }
 
+    if (totalGuessesAllowed === 0) {
+        userWon = false;
+        return displayGameResults();
+    }
+
 }
 
 
 const displayGameResults = () => {
     resultsEl = document.getElementById('game-result-text');
+    resultsEl.style.color = 'orange'
     resultsEl.innerHTML = `<div> You ${userWon ? 'won' : 'lost'} !!!</div>`;
-    contentLeftTop = document.querySelector('._is-content.top');
-    contentLeftBottom = document.querySelector('._is-content.bottom');
     contentLeftTop.classList.remove('show');
     contentLeftBottom.classList.add('show');
     document.getElementById('new-game-button').addEventListener('click', resetGame)
 }
 
 const resetGame = () => {
+    isPlaying = false;
     totalGuessesAllowed = MAX_GUESS;
+    contentLeftTop = document.querySelector('._is-content.top');
+    contentLeftBottom = document.querySelector('._is-content.bottom');
     contentLeftTop.classList.add('show');
     contentLeftBottom.classList.remove('show');
     playerInputSection.innerHTML = '';
     for (let x of document.getElementsByClassName(ALPHABET_CLASS_NAME)) {
-            x.removeAttribute('disabled')
+        x.removeAttribute('disabled')
+    }
+    livesContainer = document.getElementById('lives-wrap');
+    livesContainer.innerHTML = '';
+    hintContainer.innerHTML = '';
+
+    displayLivesRemaining();  
+    updateLives() 
+    
+}
+
+const displayLivesRemaining = () => {
+    for(let i = 1; i <= totalGuessesAllowed; i++) {
+        const liveEl = document.createElement('span');
+        liveEl.classList.add('live', 'loaded');
+        livesContainer.append(liveEl);
+    }
+}
+
+const updateLives = () => {
+    if (isPlaying) {
+        livesContainer.children[totalGuessesAllowed].classList.remove('loaded');
+
+    } else {
+        const livesUsed = livesContainer.children;
+        for(let x of livesUsed) {
+           if (!x.classList.contains('loaded')) x.classList.add('loaded');
+        } 
     }
 }
 
@@ -155,3 +192,4 @@ window.addEventListener('load', initializer);
 
 //document.addEventListener('DOMContentLoaded', initializer)
 
+// Canvas Drawing 

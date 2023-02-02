@@ -12,24 +12,21 @@
     <!-- <div class="main-title"> -->
         <h1>The Hangman Game</h1>
         <h3 class="body-font main">Please Select Your Catergory to Play</h3>
-
     <div class="main-container">
         <!-- change this to columns -->
         <div class="content-left col">
             <div class="_is-content top show">
+                <div id="lives-remaining-container"> 
+                    <img src="heart-lives.png"/>
+                    <div id="lives-wrap"></div>
+                </div>
                 <div id="category-container"></div>
-    
                 <div id="letter-container" class="letter-container hide"></div>
-        
                 <div id="player-input-section"></div>
-                
-        
-                <div id="word-hint-container"></div>
+                <div id="word-hint-container" class="body-font"></div>
             </div>
-
             <div class="_is-content bottom">
                 <div id="game-result-text"></div>
-    
                 <button id="new-game-button" class="body-font">New Game</button>
             </div>
         </div>
