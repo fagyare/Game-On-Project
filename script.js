@@ -23,6 +23,7 @@ let contentLeftBottom = null;
 let playerInputSection = null;
 let livesContainer = null;
 let hintContainer = null;
+let manHanging = null;
 let isNewGame = false;
 let isCategorySelected = false;
 /**
@@ -55,7 +56,7 @@ const generateAndDisplayAlphabets = () => {
    
     for (let letter of alphabets) {
         const letterBtn = document.createElement('button');
-        letterBtn.classList.add(ALPHABET_CLASS_NAME);
+        letterBtn.classList.add(ALPHABET_CLASS_NAME, 'body-font');
         letterBtn.textContent = letter;
         letterBtn.setAttribute('type', 'button');
         letterBtn.addEventListener('click', letterClicked);
@@ -64,8 +65,7 @@ const generateAndDisplayAlphabets = () => {
 }
 
 const generateWord = (selectCategory) => {
-    isCategorySelected = true;
-    isPlaying = !isCategorySelected;
+    isPlaying = false;
     rightGuesses = [];
     wrongGuesses = [];
     const words = categories[selectCategory];
@@ -77,6 +77,7 @@ const generateWord = (selectCategory) => {
     resetGame();
     addSpaces();
 
+    isCategorySelected = true;
     hintContainer.innerHTML = hint;
 }
 
@@ -96,6 +97,8 @@ const addSpaces = () => {
  * @params e : click event
  */
 const letterClicked = (e) => {
+    if (!isCategorySelected) return;
+
     isPlaying = true;
     e.target.classList.add('clicked');
     e.target.setAttribute('disabled', true);
@@ -144,6 +147,7 @@ const displayGameResults = () => {
 
 const resetGame = () => {
     isPlaying = false;
+    isCategorySelected = false;
     totalGuessesAllowed = MAX_GUESS;
     contentLeftTop = document.querySelector('._is-content.top');
     contentLeftBottom = document.querySelector('._is-content.bottom');
@@ -151,14 +155,17 @@ const resetGame = () => {
     contentLeftBottom.classList.remove('show');
     playerInputSection.innerHTML = '';
     for (let x of document.getElementsByClassName(ALPHABET_CLASS_NAME)) {
-        x.removeAttribute('disabled')
+        x.removeAttribute('disabled');
+        x.classList.remove('clicked');
     }
     livesContainer = document.getElementById('lives-wrap');
     livesContainer.innerHTML = '';
     hintContainer.innerHTML = '';
-
+    
+    if (manHanging) manHanging.setAttribute('src', `images/${totalGuessesAllowed}-hangman.png`);
+    
     displayLivesRemaining();  
-    updateLives() 
+    updateLives();
     
 }
 
@@ -184,7 +191,8 @@ const updateLives = () => {
 
 const drawMan = () => {
     if (totalGuessesAllowed === 0) return;
-    document.getElementsByClassName('man-hanging')[0].setAttribute('src', `images/${totalGuessesAllowed}.jpg`);
+    manHanging = document.getElementsByClassName('man-hanging')[0];
+    manHanging.setAttribute('src', `images/${totalGuessesAllowed}-hangman.png`); 
 }
 
 //First function - this is called when the game is loaded/player presses New Game button

@@ -24,10 +24,11 @@ h1 {
     font-family: cursive;
     margin-top: 32px;
     letter-spacing: 2px;
+    letter-spacing: 4px;
 }
 
 h3 {
-    color: lightsalmon;
+    color: tan;
     text-transform: uppercase;
     font-family: monospace;
     text-align: center;
@@ -49,7 +50,7 @@ h3:not(.main) {
     margin: 50px auto;
     font-size: 20px;
     width: 100vw;
-    /* height: 50vh; */
+    min-width: 633px;
     max-width: 60vw;
     max-height: 60vw;
     display: flex;
@@ -58,9 +59,8 @@ h3:not(.main) {
 }
 
 #new-game-button{
-    background-color: #de4112;
+    background-color: rgb(92, 128, 102);
     padding: 7px;
-
     width: 80%;
     height: 50px;
     margin: 16px auto;
@@ -93,6 +93,8 @@ h3:not(.main) {
     width: 50%;
     text-transform: uppercase;
     font-weight: bold;
+    background-color: antiquewhite;
+    border-color: papayawhip;
 }
 
 .category-container button {
@@ -143,6 +145,9 @@ canvas {
 
 .col.content-right {
     background-color: #EAAA00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button {
@@ -163,11 +168,13 @@ button:not(._letter) {
     padding: 16px;
 }
 
-.letter-container button {
+._alphabet  {
     padding: 4px 6px;
     margin: 4px;
     border-radius: 4px;
     width: 34px;
+    border-color: blanchedalmond;
+    text-transform: uppercase;
 }
 
 #player-input-section {
@@ -206,12 +213,20 @@ button:not(._letter) {
     max-width: 48%;
     height: 12px;
     position: relative;
-    top: -55px;
+    top: -58px;
     left: 5px;
 }
 
 #lives-remaining-container > div {
     height: 100%;
+}
+
+#lives-remaining-container img {
+    width: 25%;
+    position: absolute;
+    left: -21px;
+    top: -18px;
+    animation: pulse 2s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
 }
 
 .live {
@@ -231,12 +246,13 @@ button:not(._letter) {
     border-bottom-right-radius: 4px;
 }
 
-#lives-remaining-container img {
-    width: 25%;
-    position: absolute;
-    left: -28px;
-    top: -20px;
-    animation: pulse 2s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+.man-hanging {
+    width: 33%;
+}
+
+button._alphabet.clicked {
+    border-color: transparent;
+    cursor: inherit;
 }
 
 @keyframes pulse {
