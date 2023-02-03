@@ -1,4 +1,4 @@
-// Catergories value for category buttons 
+// Set Catergories value for category buttons 
 let categories = {
     teams: ['Lakers', 'Knicks', 'Nuggets', 'Pistons', 'Celtics', 'Heat', 'Nets', 'Bucks', 'Pacers', 'Magic'],
     countries: ['Ghana', 'Nigeria', 'Mozambique', 'Zimbabwe', 'Morocco', 'Eswatini', 'Somalia', 'Mali', 'Seychelles', 'Eritrea'],
