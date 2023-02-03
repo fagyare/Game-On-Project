@@ -15,7 +15,7 @@ let wrongGuesses = [];
 let userWon = false;
 const LETTER_CLASS_NAME = '_letter';
 const ALPHABET_CLASS_NAME = '_alphabet';
-const MAX_GUESS = 5;
+const MAX_GUESS = 7;
 let totalGuessesAllowed = MAX_GUESS;
 let resultsEl = null;
 let contentLeftTop = null;
@@ -117,7 +117,7 @@ const letterClicked = (e) => {
 
         updateLives();
         // START DRAWING HERE
-
+        drawMan();
     }
 
     if (rightGuesses.join('') === chosenWord) {
@@ -180,6 +180,11 @@ const updateLives = () => {
            if (!x.classList.contains('loaded')) x.classList.add('loaded');
         } 
     }
+}
+
+const drawMan = () => {
+    if (totalGuessesAllowed === 0) return;
+    document.getElementsByClassName('man-hanging')[0].setAttribute('src', `images/${totalGuessesAllowed}.jpg`);
 }
 
 //First function - this is called when the game is loaded/player presses New Game button

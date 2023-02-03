@@ -203,7 +203,7 @@ button:not(._letter) {
 
 #lives-remaining-container {
     width: auto;
-    max-width: 40%;
+    max-width: 48%;
     height: 12px;
     position: relative;
     top: -55px;
