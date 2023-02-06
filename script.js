@@ -1,8 +1,8 @@
-// Set Catergories value for category buttons 
+// Set +Catergories value for category buttons 
 let categories = {
     teams: ['Lakers', 'Knicks', 'Nuggets', 'Pistons', 'Celtics', 'Heat', 'Nets', 'Bucks', 'Pacers', 'Magic'],
     countries: ['Ghana', 'Nigeria', 'Mozambique', 'Zimbabwe', 'Morocco', 'Eswatini', 'Somalia', 'Mali', 'Seychelles', 'Eritrea'],
-   };
+};
 let hints = {
     teams: 'A team in the NBA',
     countries: 'A country in Africa'
@@ -35,25 +35,25 @@ const canvas = document.querySelector('#canvas');
  */
 
 // Actions/ functions for the two Category buttons 
-const displayOptions = () => {
+const displayCategories = () => {
     const categoryContainer = document.getElementById('category-container');
     categoryContainer.innerHTML += `<h3>Categories</h3>`;
     let buttonCon = document.createElement('div');
     buttonCon.classList.add('categories-btn-wrap');
-    for (let value in categories){
+    for (let value in categories) {
         buttonCon.innerHTML += `<button class='categories body-font' onclick="generateWord('${value}')">${value}</button>`;
     }
-    categoryContainer.appendChild(buttonCon);
-    generateAndDisplayAlphabets();
+    categoryContainer.appendChild(buttonCon); 
+    generateAndDisplayAlphabets(); 
 };
 
 // generate & display all alphabets using generateAndDisplayAplphabets arrow fucntion 
 const generateAndDisplayAlphabets = () => {
     const letterContainer = document.getElementById('letter-container');
     const alphabets = [
-        'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     ];
-   
+
     for (let letter of alphabets) {
         const letterBtn = document.createElement('button');
         letterBtn.classList.add(ALPHABET_CLASS_NAME, 'body-font');
@@ -66,9 +66,7 @@ const generateAndDisplayAlphabets = () => {
 
 const generateWord = (selectCategory) => {
     isPlaying = false;
-    rightGuesses = [];
-    wrongGuesses = [];
-    const words = categories[selectCategory];
+    const words = categories[selectCategory]; 
     const hint = hints[selectCategory];
     chosenWord = words[Math.floor(Math.random() * 9)].toLowerCase();
     playerInputSection = document.getElementById('player-input-section');
@@ -84,7 +82,7 @@ const generateWord = (selectCategory) => {
 const addSpaces = () => {
     rightGuesses = Array(chosenWord.length).fill('_');
     playerInputSection.innerHTML = '';
-    for(let ch of rightGuesses) {
+    for (let ch of rightGuesses) {
         const letterEl = document.createElement('h4');
         letterEl.classList.add('_letter', 'main-font');
         letterEl.textContent = ch;
@@ -103,7 +101,7 @@ const letterClicked = (e) => {
     e.target.classList.add('clicked');
     e.target.setAttribute('disabled', true);
     const letter = e.target.textContent;
-    const wordArr = chosenWord.split(''); 
+    const wordArr = chosenWord.split('');
     const exists = wordArr.find(l => l === letter);
 
     if (exists) {
@@ -145,7 +143,12 @@ const displayGameResults = () => {
     document.getElementById('new-game-button').addEventListener('click', resetGame)
 }
 
+/**
+ * resets game so user can play afresh
+ */
 const resetGame = () => {
+    rightGuesses = [];
+    wrongGuesses = [];
     isPlaying = false;
     isCategorySelected = false;
     totalGuessesAllowed = MAX_GUESS;
@@ -161,42 +164,45 @@ const resetGame = () => {
     livesContainer = document.getElementById('lives-wrap');
     livesContainer.innerHTML = '';
     hintContainer.innerHTML = '';
-    
-    if (manHanging) manHanging.setAttribute('src', `images/${totalGuessesAllowed}-hangman.png`);
-    
-    displayLivesRemaining();  
-    updateLives();
-    
-}
 
+    if (manHanging) manHanging.setAttribute('src', `images/${totalGuessesAllowed}-hangman.png`);
+
+    displayLivesRemaining();
+    updateLives();
+
+}
+// add players/users lives to the dom 
 const displayLivesRemaining = () => {
-    for(let i = 1; i <= totalGuessesAllowed; i++) {
+    for (let i = 1; i <= totalGuessesAllowed; i++) {
         const liveEl = document.createElement('span');
         liveEl.classList.add('live', 'loaded');
         livesContainer.append(liveEl);
     }
 }
-
+// update user lives : tracked by class "loaded" 
 const updateLives = () => {
     if (isPlaying) {
         livesContainer.children[totalGuessesAllowed].classList.remove('loaded');
 
+
+        // fill up the lives when category is reset. reload live
     } else {
         const livesUsed = livesContainer.children;
-        for(let x of livesUsed) {
-           if (!x.classList.contains('loaded')) x.classList.add('loaded');
-        } 
+        for (let x of livesUsed) {
+            if (!x.classList.contains('loaded')) x.classList.add('loaded');
+        }
     }
 }
-
+// total guess allowed corresponds to the images
+// this is called when user guesses wrong 
 const drawMan = () => {
     if (totalGuessesAllowed === 0) return;
     manHanging = document.getElementsByClassName('man-hanging')[0];
-    manHanging.setAttribute('src', `images/${totalGuessesAllowed}-hangman.png`); 
+    manHanging.setAttribute('src', `images/${totalGuessesAllowed}-hangman.png`);
 }
 
 //First function - this is called when the game is loaded/player presses New Game button
-const initializer = () => displayOptions();
+const initializer = () => displayCategories();
 
 // New Game button Click Event Listener 
 // newGameButton.addEventListener("click", initializer);

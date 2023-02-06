@@ -52,3 +52,6 @@ Set Category Array NBA Teams
     Category Array African Countries 
 
 
+Things to work on:
+Need to work on reset function 
+- give a user an option/message to choose a new category once game restarts 
