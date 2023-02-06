@@ -1,5 +1,7 @@
 # Game-On-Project - The Hangman Game
 
+Play the game here: https://fagyare.github.io/Game-On-Project/
+
 I created a hangman game using HTML, CSS, and JavaScript. Logics of the game are below: 
 
 
@@ -47,11 +49,25 @@ Canvas - hangman/canvas draw anytime a user/player selects a wrong letter
 
 
 
-JavaScript: 
+JavaScript: Functions 
+* Windows Initializer starts the page 
+* DisplayCategories () Starts the game off displaying two categories to play  
+* GenerateAlpahbet () Array to display and loop through alphabets. Letter button created and appended to letter container 
+* GenerateWord function () Generates the words (team & countries) listed in the categories array -- it calls the Categories fucntion for user to randomly choose a word to play 
+* addSpace () adds player chosen words to open spaces. It adds class letter to space. RightGuess fill through the chosenWord in category and display. 
+* LetterClicked () Handles when letter is clicked. Ready to start play when click on a category. If playing. If word exist & right, it pushes _letter into space 
+
 Set Category Array NBA Teams
     Category Array African Countries 
 
 
+Challenges: 
+Bringing all the functions together. 
+I wanted to add more features/anniminations but I did not want to compliment things. 
+A lot of Arrays 
+
 Things to work on:
 Need to work on reset function 
 - give a user an option/message to choose a new category once game restarts 
+- add effects and sounds to the game 
+

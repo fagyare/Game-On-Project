@@ -78,7 +78,7 @@ const generateWord = (selectCategory) => {
     isCategorySelected = true;
     hintContainer.innerHTML = hint;
 }
-
+// Spaces for chosen words 
 const addSpaces = () => {
     rightGuesses = Array(chosenWord.length).fill('_');
     playerInputSection.innerHTML = '';
@@ -133,7 +133,7 @@ const letterClicked = (e) => {
 
 }
 
-
+// Display game result function - "You WIN" or "You Lost"
 const displayGameResults = () => {
     resultsEl = document.getElementById('game-result-text');
     resultsEl.style.color = 'orange'
